@@ -81,6 +81,28 @@
             box-shadow: 0px 6px 12px rgba(255, 75, 43, 0.7);
         }
 
+        /* Create New Account Button */
+        #createAccountBtn {
+            background-color: #28a745; /* Green color */
+            color: white;
+            font-weight: bold;
+        }
+
+        #createAccountBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Telegram Button */
+        #telegramBtn {
+            background-color: #007bff; /* Blue color */
+            color: white;
+            font-weight: bold;
+        }
+
+        #telegramBtn:hover {
+            background-color: #0056b3;
+        }
+
         /* Toast Message */
         .toast {
             visibility: hidden;
@@ -118,6 +140,15 @@
         <h2>BDGWIN PREDICTOR</h2>
         <div class="result-box" id="resultBox">?</div>
         <button onclick="predictResult()" id="predictBtn">Predict</button>
+
+        <!-- Create New Account Button -->
+        <button id="createAccountBtn" onclick="window.open('https://www.bdgwin-api.com//#/register?invitationCode=372171400520', '_blank')">Create New Account</button>
+
+        <!-- Join Telegram Channel Button -->
+        <button id="telegramBtn" onclick="window.open('https://t.me/apkmodderking', '_blank')">
+            Join Telegram Channel
+        </button>
+
         <div id="toast" class="toast"></div>
     </div>
 
