@@ -31,47 +31,51 @@
             100% { background-position: 100% 50%; }
         }
 
-        /* 3D Dialog Box */
+        /* Dialog Box */
         .dialog-box {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(145deg, #ffffff, #d1d1d1);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3), -10px -10px 20px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
             text-align: center;
             z-index: 1000;
+            width: 80%;
+            max-width: 300px;
+            display: none;
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        .dialog-box h3 {
-            margin-bottom: 15px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .dialog-box p {
+            font-size: 16px;
             color: #333;
-            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .dialog-box button {
             background: linear-gradient(90deg, #1e3c72, #2a5298);
             color: white;
             font-weight: bold;
-            padding: 12px 25px;
+            padding: 8px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(42, 82, 152, 0.5);
+            box-shadow: 0px 3px 8px rgba(42, 82, 152, 0.5);
             transition: all 0.3s ease-in-out;
         }
 
         .dialog-box button:hover {
             background: linear-gradient(90deg, #2a5298, #1e3c72);
-            box-shadow: 0px 6px 12px rgba(42, 82, 152, 0.7);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -55%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            box-shadow: 0px 5px 10px rgba(42, 82, 152, 0.7);
         }
 
         /* Container */
@@ -133,10 +137,10 @@
 </head>
 <body>
 
-    <!-- 3D Dialog Box -->
+    <!-- New Dialog Box -->
     <div class="dialog-box" id="dialogBox">
-        <h3>Made by Apkmodderking</h3>
-        <button onclick="openTelegram()">Telegram</button>
+        <p>This app is made by Apkmodderking.<br>Search <b>@apkmodderking</b> on Telegram and join the channel.</p>
+        <button onclick="hideDialog()">OK</button>
     </div>
 
     <!-- Main Content -->
@@ -148,23 +152,10 @@
 
     <!-- Telegram Link at Bottom -->
     <div class="telegram-link">
-        Join us on Telegram: <a href="https://telegram.openinapp.co/cv7bo" target="_blank">Click Here</a>
+        Join us on Telegram: <a href="tg://resolve?domain=apkmodderking" target="_blank">Click Here</a>
     </div>
 
     <script>
-        // Show Dialog Box only once
-        window.onload = function() {
-            if (localStorage.getItem("dialogHidden") !== "true") {
-                document.getElementById("dialogBox").style.display = "block";
-            }
-        };
-
-        function openTelegram() {
-            window.open("https://telegram.openinapp.co/cv7bo", "_blank");
-            document.getElementById("dialogBox").style.display = "none";
-            localStorage.setItem("dialogHidden", "true");
-        }
-
         let lastClickTime = 0;
         let cooldown = 60;
         let countdownInterval;
@@ -189,6 +180,19 @@
             resultBox.innerText = result;
             resultBox.style.background = result === "Big" ? "linear-gradient(45deg, #ff9a9e, #fad0c4)" : "linear-gradient(45deg, #a1c4fd, #c2e9fb)";
         }
+
+        // Show dialog box every 2 minutes (120 seconds)
+        function showDialog() {
+            document.getElementById("dialogBox").style.display = "block";
+        }
+
+        function hideDialog() {
+            document.getElementById("dialogBox").style.display = "none";
+            setTimeout(showDialog, 120000); // 2 minutes delay
+        }
+
+        // First time show dialog box after 5 seconds
+        setTimeout(showDialog, 5000);
     </script>
 
 </body>
