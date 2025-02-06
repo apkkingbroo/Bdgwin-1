@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>55 Club Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background & Foreground Colors */
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: red;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Button Animation */
+        .btn {
+            transition: transform 0.1s ease-in-out;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Container */
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 0, 0.5);
+            color: yellow;
+            border: 2px solid yellow;
+        }
+
+        /* Title */
+        h1 {
+            color: yellow;
+            text-shadow: 0px 0px 10px rgba(255, 255, 0, 0.7);
+            margin-bottom: 20px;
+        }
+
+        /* Prediction Result Box */
+        .result-box {
+            width: 250px;
+            height: 100px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            background: yellow;
+            color: red;
+            transition: 0.3s;
+            border: 2px solid yellow;
+        }
+
+        /* Buttons */
+        .btn {
+            background: yellow;
+            color: red;
+            font-weight: bold;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid yellow;
+            box-shadow: 0px 3px 8px rgba(255, 255, 0, 0.5);
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: red;
+            color: yellow;
+            box-shadow: 0px 6px 12px rgba(255, 255, 0, 0.7);
+        }
+
+        /* Countdown Timer */
+        #countdownTimer {
+            color: yellow;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Links */
+        .link-container {
+            margin-top: 20px;
+        }
+
+        .link-container a {
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .account-link {
+            background: yellow;
+            color: red;
+            box-shadow: 0px 3px 8px rgba(255, 255, 0, 0.5);
+        }
+
+        .account-link:hover {
+            background: red;
+            color: yellow;
+            box-shadow: 0px 6px 12px rgba(255, 255, 0, 0.7);
+        }
+
+        .telegram-link {
+            color: yellow;
+        }
+
+        .telegram-link a {
+            color: yellow;
+        }
+
+        .telegram-link a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Title -->
+    <h1>55 Club Prediction</h1>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Big or Small Prediction</h2>
+        <div class="result-box" id="resultBox">?</div>
+        <button onclick="predictResult()" id="predictBtn" class="btn">Predict</button>
+        <!-- Countdown Timer Display -->
+        <p id="countdownTimer"></p>
+    </div>
+
+    <!-- Links -->
+    <div class="link-container">
+        <a href="https://www.in979.in/#/register?invitationCode=83221522037" target="_blank" class="account-link">Create a new account first</a>
+        <div class="telegram-link">
+            Join us on Telegram: <a href="https://t.me/apkmodderking" target="_blank">Click Here</a>
+        </div>
+    </div>
+
+    <script>
+        let lastClickTime = 0;
+        let cooldown = 60;
+        let countdownInterval;
+
+        function getRandomResult() {
+            return Math.random() < 0.5 ? "Big" : "Small";
+        }
+
+        function updateCountdown() {
+            let currentTime = new Date().getTime();
+            let timePassed = Math.floor((currentTime - lastClickTime) / 1000);
+            let timeLeft = cooldown - timePassed;
+            let countdownElement = document.getElementById("countdownTimer");
+
+            if (timeLeft > 0) {
+                countdownElement.innerText = `Next prediction in: ${timeLeft} sec`;
+            } else {
+                countdownElement.innerText = "";
+                clearInterval(countdownInterval);
+            }
+        }
+
+        function predictResult() {
+            let currentTime = new Date().getTime();
+            let timePassed = Math.floor((currentTime - lastClickTime) / 1000);
+            let timeLeft = cooldown - timePassed;
+
+            if (timeLeft > 0) {
+                return;
+            }
+
+            lastClickTime = currentTime;
+            let resultBox = document.getElementById('resultBox');
+            let result = getRandomResult();
+            resultBox.innerText = result;
+            resultBox.style.background = result === "Big" ? "yellow" : "yellow";
+            resultBox.style.color = "red";
+
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+    </script>
+
+</body>
+</html>
